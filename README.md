@@ -22,8 +22,8 @@ Slack - group-5-project-1 channel
 Communication should be done in Slack, unless an urgent need requires email or phone. 
 Slack allows a single central point for communication.
 Mike Sheliga - MJS - msheliga1 "at" gmail.com - Generally jQuery, Javascript
-De'Sean Pair - generally HTML, modals
-Tayler Baldwin - generally CSS, Bulma Framework
+De'Sean Pair - gitHub dpair12 - generally HTML, modals
+Tayler Baldwin - gitHub justmoonflower - generally CSS, Bulma Framework
 
 ==============================================================================================================================
 ## Technical Project Details 
@@ -42,7 +42,10 @@ Tayler Baldwin - generally CSS, Bulma Framework
         - Must update local repo after adding a branch  
         - Switch to branch: From cmd line git switch <branchname>  
         - Once changes committed, git push origin <branchname>  
-        - Issue a pull request in gitHub, and you may approve your own request.  
+        - Issue a pull request in gitHub.
+        - Click "Pull Requests" in top menu bar (3rd from left).
+        - Click "review Required" in small font below pull request name.
+        - and you may approve your own request.  
     Clone to local machine (Copy https, then git clone paste).    
     Create a nice long READ.md file!!  (Modify prior projects.)   
     Commit and push files back to gitHub branch. Issue pull request and approve. 

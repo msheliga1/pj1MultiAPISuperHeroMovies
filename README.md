@@ -1,4 +1,4 @@
-# uriProject1
+# uriProject1 Multiple API Super Hero Movies   
 URI Project I - Multiple APIs, Multiple HTML pages, non-bootstrap CSS framework and local storage - Due 1.9.24
 Michael Sheliga, De'Sean Pair and Tayler Baldwin - Started Tuesday 12.19.23
 
@@ -11,34 +11,47 @@ Link to deployed github.io site. https://msheliga1.github.io/uriProject1MultiAPI
 Link to screenshot of deployed github.io site. ![Mini Project I APIs GitHub Deployed Start Screenshot](./assets/images/WorkingScreenshot.PNG)   
 Link to screenshot of 2. ![Mini Project I APIs GitHub Results Screenshot](./assets/images/ResultsScreenshot.PNG)   
 
-## Project Goals
+## Project Goals  
 This repo uses multiple APIs, multiple HTML pages (possibly virtual, likely page swapped), local storage and a non-BootStrap CSS framework, 
 to create a "Superhero" movie application. The user will type a superhero name, the comicvine API will be used to get a list of movies, 
-and the omdb API will be used to get details for each movie.
-==============================================================================================================================   
-Communicaton:
-    All communication should be done in Slack, unless an urgent need requires email or phone.  Slack allows a single central point for 
-    communication.
-Github:  
+and the omdb API will be used to get details for each movie.   
+
+## Group Details - Communication, Members and Member Areas
+-------------------------------------------------------------
+Slack - group-5-project-1 channel
+Communication should be done in Slack, unless an urgent need requires email or phone. 
+Slack allows a single central point for communication.
+Mike Sheliga - MJS - msheliga1 "at" gmail.com - Generally jQuery, Javascript
+De'Sean Pair - generally HTML, modals
+Tayler Baldwin - generally CSS, Bulma Framework
+
+==============================================================================================================================
+## Technical Project Details 
+==============================================================================================================================
+## Github:  
     Create Repo (github, repositories => New)  
         - Make this a shared repo. 
-        - Should do all work in branches.
-        - All branch names will begin with the initials of the main person working on the branch.
-        - Issue a pull request in gitHub, and you may approve your own request.
-    Clone to local machine (Copy https, then git clone paste).  
-    Create a nice long READ.md file!!  (Modify prior projects.)  
     Copy directories and sample files from prior project (or create from scratch). 
         -- No starter code. No need for copying one file at a time via command line. Worked well.
         -- Alternate: Go to Demo (root) folder, download zip, moving to local repo, unzip - likely fastest method.     
         -- Could not find a better way to copy over all files.    
-    ... create HTML, CSS and javascript, etc. ...  
-    Commit and push files back to gitHub  
+        -- OR ... create HTML, CSS and javascript, etc. from scratch or sample files ...  
+    Branches  
+        - Should do all work in branches. (new branch inside gitHub)  
+        - All branch names will begin with the initials of the main person working on the branch.  
+        - Must update local repo after adding a branch  
+        - Switch to branch: From cmd line git switch <branchname>  
+        - Once changes committed, git push origin <branchname>  
+        - Issue a pull request in gitHub, and you may approve your own request.  
+    Clone to local machine (Copy https, then git clone paste).    
+    Create a nice long READ.md file!!  (Modify prior projects.)   
+    Commit and push files back to gitHub branch. Issue pull request and approve. 
     Deploy code (Settings...CodeAndAnimation->Pages on left, GitHub Pages->Branch->main, save)
         - Deployed code name always msheliga1/github.io/RepoName !!
     Make Sure it Works  
     Insert Screenshot X2 of deployment into readme file.  
   
-Tools and Technologies Used - HTML, CSS Bulma Framework and JQuery
+## Tools and Technologies Used - HTML, CSS Bulma Framework and JQuery   
     Github - Should use branches
     Create/Modify HTML - De'Sean. Likely 2 separate pages
     Modals (hidden HTML) - De'Sean
@@ -47,7 +60,7 @@ Tools and Technologies Used - HTML, CSS Bulma Framework and JQuery
     Agile - Try to assign a little work at a time. 
 
 
-Acceptance Criteria
+## Acceptance Criteria  
 --------------------
     Use a CSS framework other than Bootstrap.
     Be deployed to GitHub Pages.
@@ -70,10 +83,3 @@ Presentation Requirements
     Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
     Demo: Show your stuff!
 
-
-Group Communication, Areas and Member Details
-------------------------------------------------
-Normal communication should be done using Slack - group-5-project-1 channel.
-Mike Sheliga - MJS - msheliga1 "at" gmail.com - Generally jQuery, Javascript
-De'Sean Pair - generally HTML, modals
-Tayler Baldwin - generally CSS, Bulma Framework

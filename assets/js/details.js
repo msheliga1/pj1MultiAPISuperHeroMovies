@@ -136,7 +136,7 @@ function superheroMovieSearch() {
     // fetch request gets a list of all the repos for the node.js organization
     myLog("Getting Movie " + movieNameStr + " released " + simpleReleaseDayjs.format('MM-DD-YYYY'));
     starts++;  // number of movies weve tried to get data for.
-    var requestUrl = "http://www.omdbapi.com/";
+    var requestUrl = "https://www.omdbapi.com/";  // changed http->https to stop cross load err in gitHub
     var apiKey ="&apikey=7b6e5d01";  // beware this is an "open" key 7b6e5d01
     var title = "?t=" + movieNameStr;
     requestUrl += title + apiKey;   // fails unless apiKey is last! - arghhhh.

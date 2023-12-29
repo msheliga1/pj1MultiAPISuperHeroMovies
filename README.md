@@ -42,6 +42,7 @@ Tayler Baldwin - gitHub justmoonflower - generally CSS, Bulma Framework
         - Must update local repo after adding a branch  
         - Switch to branch: From cmd line git switch <branchname>  
         - Once changes committed, git push origin <branchname>  
+            - for pushing to remote test branch: git push origin local_branch:test
         - Issue a pull request in gitHub.
         - Click "Pull Requests" in top menu bar (3rd from left).
         - Click "review Required" in small font below pull request name.

@@ -194,7 +194,8 @@ function superheroMovieSearch() {
 // ================= Event Handlers ==================================
 // load the relative Url, a query store string and change 
 function backToSearch() {
-    var indexUrl = "./../../../index.html";  // unsure why 3 ..'s instead of two
+    // got rid of / before ?, so one less ../ in Url below MJS 12.29
+    var indexUrl = "../../index.html";  
     if (storeHero) {
         indexUrl += "?store=" + getQueryValue("search");  // pass heroName back if needed for localStorage
     }

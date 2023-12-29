@@ -32,7 +32,8 @@ function superherosearch(storeIfFound) {  // poor CamelCase but what we agreed u
     var heroName = inputBox.value;  // ie. "batman";
     var storeQP = "&store=" + storeIfFound;
     console.log("Starting superhero Search routine for " + heroName + " ... storeQP " + storeQP);
-    window.location.href = "./assets/html/details.html/?search=" + heroName + storeQP;
+    // MJS 12.29 = got rid of PITA / before ? - caused issues in gitHub test (but not before!). What a PITA
+    window.location.href = "./assets/html/details.html?search=" + heroName + storeQP;
     // changing location (loading new web page) will terminate the routine 
 } // end function superheroSearch
 

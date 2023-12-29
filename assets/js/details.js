@@ -1,4 +1,4 @@
-// MJS 12.25.23 - URI coding bootcamp class - Group Project 1 -
+// MJS 12.25.23 - URI coding bootcamp class - Group Project 1 
 // Mike Sheliga, Tayler Baldwin, De'Sean Pair
 // Search for movies in tmdb API using superhero key in query string. 
 // Use results to search for more details in omdb API. Display to DOM. 

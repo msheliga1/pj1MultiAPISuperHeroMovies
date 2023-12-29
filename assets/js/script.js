@@ -2,7 +2,7 @@
 // Most programming by MJS
 // Includes De'Seans old local storage code 12.28.23
 var inputBox = document.getElementById('search-input');  // originally agreed upon name was superhero
-var form = document.querySelector('form');  // MJS - I'd suggest an input field instead of a form, but either likely works
+var form = document.querySelector('form');                  // MJS - I'd favor an input field instead of a form, but either likely works
 var heroInput = document.getElementById('search-input');
 var previous = document.getElementById('previous');
 previous.style.display = 'block'; // this belongs in the css file.

@@ -1,6 +1,6 @@
 # uriProject1 Multiple API Super Hero Movies   
 URI Project I - Multiple APIs, Multiple HTML pages, non-bootstrap CSS framework and local storage - Due 1.9.24
-Michael Sheliga, De'Sean Pair and Tayler Baldwin - Started Tuesday 12.19.23
+Michael Sheliga, De'Sean Pair and Tayler Baldwin - Started Tuesday 12.19.23 - Last Edit 12.28.23 MJS
 
 This group repo is for the University of Richmond (URI) coding bootcamp.  
 This is the week 7-8 mini-project due 1.9.24. 
@@ -42,11 +42,16 @@ Tayler Baldwin - gitHub justmoonflower - generally CSS, Bulma Framework
         - Must update local repo after adding a branch  
         - Switch to branch: From cmd line git switch <branchname>  
         - Once changes committed, git push origin <branchname>  
-            - for pushing to remote test branch: git push origin local_branch:test
-        - Issue a pull request in gitHub.
-        - Click "Pull Requests" in top menu bar (3rd from left).
-        - Click "review Required" in small font below pull request name.
-        - and you may approve your own request.  
+    Pull Requests - In Github
+        - Issue a new pull request in gitHub.
+        - Click "Pull Requests" in top menu bar (3rd from left) to get a list of pull requests.
+        - Select the pull request just created.
+        - Click on "assignees" on the icon on the right. Add the other members of your team.
+        - You may NOT approve your own request.  
+        - You may "merge" your branch into main in your local repo (git switch main, git merge branchname) BUT
+        - You cannot push this to GitHub (git push origin main). 
+        - Recived a "remote error: protected branch ... changes must be made through a pull request"
+
     Clone to local machine (Copy https, then git clone paste).    
     Create a nice long READ.md file!!  (Modify prior projects.)   
     Commit and push files back to gitHub branch. Issue pull request and approve. 

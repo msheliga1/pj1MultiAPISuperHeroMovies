@@ -92,7 +92,7 @@ function storedSuperheroButtonClick(event) {
         superherosearch(storeIfFound);  // will setup queryString and page swap 
 } // end function storedSuperheroButtonClick
 
-// -------------- Local Storage Functions ------------------
+// -------------- Local Storage Functions ----- SuperHero_ -------------
 var localStorePrefix = "SuperHero_";     // ideally these would be external to the class.
 var localStoreDiv = "#saved-data-div";  // DOM div to store the data
 

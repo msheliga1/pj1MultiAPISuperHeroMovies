@@ -51,6 +51,7 @@ Tayler Baldwin - gitHub justmoonflower - generally CSS, Bulma Framework
         - You may "merge" your branch into main in your local repo (git switch main, git merge branchname) BUT
         - You cannot push this to GitHub (git push origin main). 
         - Recived a "remote error: protected branch ... changes must be made through a pull request"
+
     Clone to local machine (Copy https, then git clone paste).    
     Create a nice long READ.md file!!  (Modify prior projects.)   
     Commit and push files back to gitHub branch. Issue pull request and approve. 

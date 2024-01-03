@@ -1,4 +1,4 @@
-// MJS 12.25.23 - URI coding bootcamp class - Group Project 1 -
+// MJS 12.25.23 - URI coding bootcamp class - Group Project 1 
 // Mike Sheliga, Tayler Baldwin, De'Sean Pair
 // Search for movies in tmdb API using superhero key in query string. 
 // Use results to search for more details in omdb API. Display to DOM. 
@@ -136,7 +136,7 @@ function superheroMovieSearch() {
     // fetch request gets a list of all the repos for the node.js organization
     myLog("Getting Movie " + movieNameStr + " released " + simpleReleaseDayjs.format('MM-DD-YYYY'));
     starts++;  // number of movies weve tried to get data for.
-    var requestUrl = "http://www.omdbapi.com/";
+    var requestUrl = "https://www.omdbapi.com/";  // changed http->https to stop cross load err in gitHub
     var apiKey ="&apikey=7b6e5d01";  // beware this is an "open" key 7b6e5d01
     var title = "?t=" + movieNameStr;
     requestUrl += title + apiKey;   // fails unless apiKey is last! - arghhhh.
@@ -194,7 +194,8 @@ function superheroMovieSearch() {
 // ================= Event Handlers ==================================
 // load the relative Url, a query store string and change 
 function backToSearch() {
-    var indexUrl = "./../../../index.html";  // unsure why 3 ..'s instead of two
+    // got rid of / before ?, so one less ../ in Url below MJS 12.29
+    var indexUrl = "../../index.html";  
     if (storeHero) {
         indexUrl += "?store=" + getQueryValue("search");  // pass heroName back if needed for localStorage
     }

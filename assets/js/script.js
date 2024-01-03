@@ -6,7 +6,6 @@ var form = document.querySelector('form');                  // MJS - I'd favor a
 var heroInput = document.getElementById('search-input');
 var previous = document.getElementById('previous');
 previous.style.display = 'block'; // this belongs in the css file.
-var btn = document.getElementById("remove-button");
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();  // prevents clearing of window, maybe event propogation
@@ -202,6 +201,8 @@ function getQueryValue(label) {
     return inputText;
 }  // end getQueryValue
 
+var btn = document.getElementById("remove-button");
 btn.setAttribute("onclick", "clearLocalStorageButtonClickFunction()"); 
+// this doesn't work unless after localStorePrefix decleared.
 localStoreQSHero(localStorePrefix);  // store hero from queryString if it exists 
 displayStoredSearches();

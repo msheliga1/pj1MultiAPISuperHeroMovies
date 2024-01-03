@@ -92,26 +92,42 @@ function storedSuperheroButtonClick(event) {
         superherosearch(storeIfFound);  // will setup queryString and page swap 
 } // end function storedSuperheroButtonClick
 
-// ----------------------- Accesssory methods -----------------------  
-function myLog(logStr) {
-  console.log(logStr);   // enables turning on-off all console.logs
-} 
+// -------------- Local Storage Functions ------------------
+var localStorePrefix = "SuperHero_";     // ideally these would be external to the class.
+var localStoreDiv = "#saved-data-div";  // DOM div to store the data
 
-// Store the hero to local storage if it is part of the queryString. MJS 12.28.23 
-function localStoreHero() {
-    var heroName = getQueryValue("store");
-    if (heroName === null) {
-        return;  // heroName not in query string
-    }
-    var i = countStoredHeros();
-    var storeKey = 'SuperHero_' + (i+1);
-    localStorage.setItem(storeKey, heroName);
-    myLog("Stored hero " + heroName + " to " + storeKey);
-}
+// see if the value is in local storage.  MJS 12.30.23 
+function locallyStoredValueExists(value) {
+  console.log("Searching for locally stored value .... " + value);
+  var count = getLocallyStoredDataCount(localStorePrefix);
+  for (i=1; i<=count; i++ ) {
+      if (localStorage.getItem(localStorePrefix+i).toLowerCase() === value.toLowerCase()) {  // no trim or lowerCase
+          return true;
+      }
+  }
+  return false;
+}  // end function locallyStoredValueExists
+
+// Return the number of locally stored values (prefix_index) beginning at 1. MJS 12.30.23.  
+// If prefix_1 thru prefix_10 exists, but prefix_5 is missing 4 will be returned.
+function getLocallyStoredDataCount(prefix) {
+  done = false;
+  var i = 1;
+  while (! done) {
+      var keyStr = prefix + i;
+      var value = localStorage.getItem(keyStr);
+      if (value === null || value.length === 0) {
+          done = true;
+      } else {
+          i++;
+      }
+  } // end while not done
+  return (i - 1);
+} // end function getLocallyStoredDataCouont
 
 // Count and return the superheroes previously saved in local storage.
-// MJS 12.28.23
-function countStoredHeros() {
+// MJS 12.28.23  OBSOLETED 1.2.24 by 
+function countStoredHerosOBS() {
     myLog("Counting searches stored in local storage ...");
     // Count the number of SuperHero_i values stored in local storage
     var done = false;
@@ -127,6 +143,26 @@ function countStoredHeros() {
     myLog("countStoredHeros found: " + i);
     return i; 
 };  // end function countStoredHeros
+
+// ----------------------- Accesssory methods -----------------------  
+function myLog(logStr) {
+  console.log(logStr);   // enables turning on-off all console.logs
+} 
+
+// Store the hero to local storage if it is part of the queryString. MJS 12.28.23 
+function localStoreHero(localStorePrefix) {
+    var heroName = getQueryValue("store");
+    if (heroName === null) {
+        return;  // heroName not in query string
+    }
+    if (locallyStoredValueExists(heroName)) {
+        return;   // hero already in local storage
+    }
+    var i = getLocallyStoredDataCount();
+    var storeKey = 'SuperHero_' + (i+1);
+    localStorage.setItem(storeKey, heroName);
+    myLog("Stored hero " + heroName + " to " + storeKey);
+}
 
 // For the given label (or name) string, return the value from the current URLs query string - 
 // Return null if label is not found - MJS 12.27.23

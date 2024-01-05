@@ -251,8 +251,11 @@ function addMovieDetailsToDom(data) {
     tdYear.textContent = data.Year;
     tdRated.textContent = data.Rated;
     tdDirector.textContent = data.Director;
-    poster.setAttribute("src", data.Poster);
-    poster.setAttribute("width", "35%");
+    poster.setAttribute("alt", "-");
+    if (poster.Data !== "N/A") {
+      poster.setAttribute("src", data.Poster);
+      poster.setAttribute("width", "35%");
+    }
     // data.poster is jpeg
     // create multiple columns (if data exists) for ratings data 
     for (var i = 0; i < ratings.length; i++) {

@@ -61,7 +61,7 @@ function superheroMovieSearch() {
         console.log("Data.page is " + data.page + " of " + data.total_pages + " Results: " + data.total_results);
         results = data.results;  // global since needed by timer event handler
         myLog("Superhero Movies Results length is " + results.length);
-        addMovieSummaryToDom(results);
+        // addMovieSummaryToDom(results); // great for debugging, not desired in production
         waitFetchResultsInterval = setInterval(movieTimeHandler, 1000)
       });  // end .then-function
   } // end function superheroMovieSearch
@@ -130,7 +130,7 @@ function superheroMovieSearch() {
     }  // end if done
   }  // end movieTimeHandler
 
-  // get Movie detail info for 1 movies from omdb API - /www.omdbapi.com - write it to the DOM
+  // get Movie detail info for 1 movie from omdb API - /www.omdbapi.com - write it to the DOM
   // Mark movie data in DOM table if found, and if release date near parameter.
   function getMovieDetails(movieNameStr, simpleReleaseDayjs) {
     // fetch request gets a list of all the repos for the node.js organization
@@ -228,7 +228,7 @@ function addMovieSummaryToDom(results) {
         }  // end for
 }  // end addMovieSummaryToDom
 
-// Detailed movie data has been confirmed good, add it to the DOM
+// Detailed movie data has been found and confirmed valid - add it to the DOM
 function addMovieDetailsToDom(data) {
     var tableBody = document.getElementById('movie-table'); 
     // Generate a table row
@@ -241,9 +241,20 @@ function addMovieDetailsToDom(data) {
     tableRow.appendChild(tdYear);
     var tdRated = document.createElement('td');
     tableRow.appendChild(tdRated);
+    var tdDirector = document.createElement('td');
+    tableRow.appendChild(tdDirector);
+    var tdPoster = document.createElement('td');
+    tableRow.appendChild(tdPoster);
+    var poster = document.createElement('img');
+    tdPoster.appendChild(poster);
     tdTitle.textContent = data.Title;
     tdYear.textContent = data.Year;
     tdRated.textContent = data.Rated;
+    tdDirector.textContent = data.Director;
+    poster.setAttribute("src", data.Poster);
+    poster.setAttribute("width", "35%");
+    // data.poster is jpeg
+    // create multiple columns (if data exists) for ratings data 
     for (var i = 0; i < ratings.length; i++) {
       // Appending the link to the tabledata and then appending the tabledata to the tablerow
       // The tablerow then gets appended to the tablebody
@@ -257,6 +268,10 @@ function addMovieDetailsToDom(data) {
         tableRow.appendChild(tdYear);
         var tdRated = document.createElement('td');
         tableRow.appendChild(tdRated);
+        var tdDirector = document.createElement('td');
+        tableRow.appendChild(tdDirector);
+        var tdPoster = document.createElement('td');
+        tableRow.appendChild(tdPoster);        
       }
       var tdSource = document.createElement('td');
       tableRow.appendChild(tdSource);

@@ -44,7 +44,7 @@ function displayStoredSearches() {
     // For each Hero Entry, Create a Button that when clicked on it can autofill search field in form
     var done = false;
     var i = 1;
-    while (! done && i < 5000) {
+    while (! done && i < 5000) {  // 5000 to stop infinite loops
         var heroName = localStorage.getItem('SuperHero_' + i);
         if (heroName !== null && heroName.length > 0 ) {
             myLog("Displaying button for " + i + ". " + heroName); 
@@ -201,8 +201,35 @@ function getQueryValue(label) {
     return inputText;
 }  // end getQueryValue
 
+var posters = [];
+// planet hulk
+posters.push(
+"https://m.media-amazon.com/images/M/MV5BYmFlNTNhNjktNDQ4NC00ZmVhLTg2NmYtOWExMmI0MzQ1ODFmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg");
+// batman 
+posters.push(
+"https://m.media-amazon.com/images/M/MV5BZWQ0OTQ3ODctMmE0MS00ODc2LTg0ZTEtZWIwNTUxOGExZTQ4XkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_SX300.jpg"); 
+// xmen apocolypse
+posters.push("https://m.media-amazon.com/images/M/MV5BMjU1ODM1MzYxN15BMl5BanBnXkFtZTgwOTA4NDE2ODE@._V1_SX300.jpg");
+// justice league flashpoint paradox
+posters.push(
+"https://m.media-amazon.com/images/M/MV5BMTgwNTljYzgtOTU3ZC00ZjhhLTk0YzItY2RiMWU0MGZlNzFjL2ltYWdlXkEyXkFqcGdeQXVyNDQ2MTMzODA@._V1_SX300.jpg");
 var btn = document.getElementById("remove-button");
 btn.setAttribute("onclick", "clearLocalStorageButtonClickFunction()"); 
+var disclaimer = document.getElementById("disclaimer");
+var parentDiv = disclaimer.parentNode;
+var posterDiv = document.createElement('div');
+parentDiv.appendChild(posterDiv);
+posterDiv.setAttribute("display", "flex");  // does not work. Use style.display instead
+posterDiv.style.display = "flex";
+for (var i=0; i<posters.length; i++) {
+  var poster1 = document.createElement('div');
+  posterDiv.appendChild(poster1);
+  var img = document.createElement('img');
+  poster1.appendChild(img);
+  img.setAttribute("src", posters[i]);
+  img.setAttribute("width", "50%");
+}
+
 // this doesn't work unless after localStorePrefix decleared.
 localStoreQSHero(localStorePrefix);  // store hero from queryString if it exists 
 displayStoredSearches();

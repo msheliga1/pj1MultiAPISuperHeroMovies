@@ -271,9 +271,11 @@ function getFavoriteMovies() {
   movie = {"Title":"Alyas Batman at Robin","Year":"1965","Rated":"N/A","Released":"25 May 1965","Runtime":"N/A","Genre":"Comedy","Director":"Paquito Toledo","Writer":"Romy T. Espiritu, Marcelo B. Osorio, Bob Kane","Actors":"Bob Soler, Lou Salvador Jr., Nova Villa","Plot":"A Batman takeoff.","Language":"Filipino, Tagalog","Country":"Philippines","Awards":"N/A","Poster":"https://m.media-amazon.com/images/M/MV5BM2Y4Y2UzYTUtYWMwYS00ZDA0LThlMjEtOTkyNjVkYzBiNTI5XkEyXkFqcGdeQXVyMzYzNzc1NjY@._V1_SX300.jpg","Ratings":[{"Source":"Internet Movie Database","Value":"6.6/10"}],"Metascore":"N/A","imdbRating":"6.6","imdbVotes":"25","imdbID":"tt1228961","Type":"movie","DVD":"N/A","BoxOffice":"N/A","Production":"N/A","Website":"N/A","Response":"True"}
   movies.push(movie);
   return movies;
-}
+} // end function getFavoriteMovies 
 
+// function will change the movies in the posterScrollDiv
 function scrollMovies() {
+  const moviesAtOnce = 4;
   var posterDiv = document.getElementById('posterScrollDiv');
   posterDiv.setAttribute("display", "flex");  // does not work. Use style.display instead
   posterDiv.style.display = "flex";
@@ -294,7 +296,6 @@ function scrollMainMovie() {
   var movie = movies[currentMainMovie]; 
   var mainImg = document.getElementById('main-img'); 
   mainImg.setAttribute("src", movie.Poster);
-  mainImg.setAttribute("width", "40%");
   var titleDiv = document.getElementById('main-title-div'); 
   titleDiv.textContent = movie.Title + " " + movie.Year;
   var detailDiv = document.getElementById('main-detail-div'); 
@@ -303,70 +304,75 @@ function scrollMainMovie() {
   setTimeout(scrollMainMovie, 7000);
 } // scrollMainMovie
 
-// create posterDiv as last sibling of disclaimer - until it gets put in html by DeSean or Tayler
-var disclaimer = document.getElementById("disclaimer");
-// disclaimer.style.background = "purple";  // works
-var mainDiv = disclaimer.parentNode; // this should really be main as index is set up as of 1.5
-myLog("Main Div Tag: " + mainDiv.tagName);
-var posterDiv = document.createElement('div');
-mainDiv.appendChild(posterDiv);
-posterDiv.setAttribute("id", "posterScrollDiv"); 
-posterDiv.setAttribute("display", "flex");  // does not work. Use style.display instead
-posterDiv.style.display = "flex";
-posterDiv.style.backgroundColor = "blue";
+// insert the scroll movie div at the end of main, and the main-movie section at the top
+function insertMissingDivs() {
 
-// Now create new "topSection" for 2 ps and image.
-// section is top section with 2 ps, and img
-var topSection = document.createElement('section');
-topSection.setAttribute("id", 'topSection');
-topSection.style.display = "flex";
-topSection.style.margin = "5px";
-topSection.style.padding = "5px";
-topSection.style.backgroundColor = "red";
-var parasDiv = document.createElement('div');
-topSection.appendChild(parasDiv);
-parasDiv.style.width = "40%";
-parasDiv.style.padding = "5px";
-parasDiv.style.backgroundColor = "purple";
-var mainImgCard = document.createElement('div');
-topSection.appendChild(mainImgCard);
-mainImgCard.style.width = "60%";
-mainImgCard.style.backgroundColor = "pink";
-mainImgCard.style.padding = "1%";
-var mainImgDiv = document.createElement('div');
-mainImgCard.appendChild(mainImgDiv);
-mainImgDiv.setAttribute("id", "main-img-div");
-var mainImg = document.createElement('img');
-mainImgDiv.appendChild(mainImg);
-mainImg.setAttribute("id", "main-img");
-mainImg.setAttribute("alt", "Movie Image");
-var mainTitleDiv = document.createElement('p');
-mainImgCard.appendChild(mainTitleDiv);
-mainTitleDiv.setAttribute("id", "main-title-div");
-mainTitleDiv.textContent = "Movie Title Year";
-var mainDetailDiv = document.createElement('p');
-mainImgCard.appendChild(mainDetailDiv);
-mainDetailDiv.setAttribute("id", "main-detail-div");
-mainDetailDiv.textContent = "Movie Details";
+  // create posterDiv as last sibling of disclaimer - until it gets put in html by DeSean or Tayler
+  var disclaimer = document.getElementById("disclaimer");
+  // disclaimer.style.background = "purple";  // works
+  var mainDiv = disclaimer.parentNode; // this should really be main as index is set up as of 1.5
+  myLog("Main Div Tag: " + mainDiv.tagName);
+  var posterDiv = document.createElement('div');
+  mainDiv.appendChild(posterDiv);
+  posterDiv.setAttribute("id", "posterScrollDiv"); 
+  posterDiv.setAttribute("display", "flex");  // does not work. Use style.display instead
+  posterDiv.style.display = "flex";
+  posterDiv.style.backgroundColor = "blue";
 
-// firstChild will return text - which includes line-break in this case! - Use firstElementChild
-var firstKid = mainDiv.firstElementChild; // currently p welcome-msg
-if (firstKid === null || firstKid === undefined) {
-  myLog("Firstkid is null-undef: " + firstKid);
-}
-myLog("firstKid " + firstKid.tagName);
-firstKid.style.backgroundColor = "yellow";
-// now take the prior first element of main, and insert it into new section
-parasDiv.appendChild(firstKid);
-var secondKid = mainDiv.firstElementChild; // should also be a p-tage
-secondKid.style.backgroundColor = "blue";
-parasDiv.appendChild(secondKid);
+  // Now create new "topSection" for 2 ps and image.
+  // section is top section with 2 ps, and img
+  var topSection = document.createElement('section');
+  topSection.setAttribute("id", 'topSection');
+  topSection.style.display = "flex";
+  topSection.style.margin = "5px";
+  topSection.style.padding = "5px";
+  topSection.style.backgroundColor = "red";
+  var parasDiv = document.createElement('div');
+  topSection.appendChild(parasDiv);
+  parasDiv.style.width = "40%";
+  parasDiv.style.padding = "5px";
+  parasDiv.style.backgroundColor = "purple";
+  var mainImgCard = document.createElement('div');
+  topSection.appendChild(mainImgCard);
+  mainImgCard.style.width = "60%";
+  mainImgCard.style.backgroundColor = "pink";
+  mainImgCard.style.padding = "1%";
+  var mainImgDiv = document.createElement('div');
+  mainImgCard.appendChild(mainImgDiv);
+  mainImgDiv.setAttribute("id", "main-img-div");
+  var mainImg = document.createElement('img');
+  mainImgDiv.appendChild(mainImg);
+  mainImg.setAttribute("id", "main-img");
+  mainImg.setAttribute("alt", "Movie Image");
+  mainImg.setAttribute("width", "40%");
+  var mainTitleDiv = document.createElement('p');
+  mainImgCard.appendChild(mainTitleDiv);
+  mainTitleDiv.setAttribute("id", "main-title-div");
+  mainTitleDiv.textContent = "Movie Title Year";
+  var mainDetailDiv = document.createElement('p');
+  mainImgCard.appendChild(mainDetailDiv);
+  mainDetailDiv.setAttribute("id", "main-detail-div");
+  mainDetailDiv.textContent = "Movie Details";
 
-// insert topSection before current first Element of mainDiv
-mainDiv.insertBefore(topSection, mainDiv.firstElementChild);
+  // firstChild will return text - which includes line-break in this case! - Use firstElementChild
+  var firstKid = mainDiv.firstElementChild; // currently p welcome-msg
+  if (firstKid === null || firstKid === undefined) {
+    myLog("Firstkid is null-undef: " + firstKid);
+  }
+  myLog("firstKid " + firstKid.tagName);
+  firstKid.style.backgroundColor = "yellow";
+  // now take the prior first element of main, and insert it into new section
+  parasDiv.appendChild(firstKid);
+  var secondKid = mainDiv.firstElementChild; // should also be a p-tage
+  secondKid.style.backgroundColor = "blue";
+  parasDiv.appendChild(secondKid);
 
+  // insert topSection before current first Element of mainDiv
+  mainDiv.insertBefore(topSection, mainDiv.firstElementChild);
+} // end insertMissingDivs
+
+insertMissingDivs(); 
 var movies = getFavoriteMovies(); // array of movies with good posters
-const moviesAtOnce = 4;
 var currentMovie = 0; 
 var currentMainMovie = 0;
 scrollMovies();

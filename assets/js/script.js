@@ -273,36 +273,89 @@ function getFavoriteMovies() {
   return movies;
 } // end function getFavoriteMovies 
 
+// A poster in the footer has been clicked. Display it in the main poster area.
+function footImageClick(ev) {
+  myLog('Starting footImageClick.');
+  target = ev.target;
+  var movieNumber = target.getAttribute("movieNumber");
+  currentMainMovie = movieNumber;  
+  replaceMainMovie(currentMainMovie, "false");  // false => Not loaded due to timeout 
+  currentMainMovie = (currentMainMovie + 1) % movies.length;
+}  // end footImageClick
+
 // function will change the movies in the posterScrollDiv
 function scrollMovies() {
   const moviesAtOnce = 4;
   var posterDiv = document.getElementById('posterScrollDiv');
   posterDiv.setAttribute("display", "flex");  // does not work. Use style.display instead
   posterDiv.style.display = "flex";
+  
   posterDiv.innerHTML = '';  // or could set text 
   for (var i=0; i<moviesAtOnce; i++) {
-    currentMovie = (currentMovie + 1) % movies.length;
+    currentMovie = (currentMovie + 1) % movies.length;  // pre-increment so not same starting moview as mainImg area
     var poster1 = document.createElement('div');
     posterDiv.appendChild(poster1);
     var img = document.createElement('img');
     poster1.appendChild(img);
+    img.setAttribute("onclick", "footImageClick(event)"); 
     img.setAttribute("src", movies[currentMovie].Poster);
+    img.setAttribute("alt", movies[currentMovie].Title + " Movie Poster");
     img.setAttribute("width", "50%");
+    img.setAttribute("movieNumber", currentMovie);
   }
   setTimeout(scrollMovies, 4000);
 } // end function scroll movies
 
+// Scroll the main movie - includes fade-out, replace, fade-in
 function scrollMainMovie() {
+  const displayTime = 7000;  // display time before scrolling, in MS
+  var mainImg = document.getElementById('main-img'); 
+  var timeoutLoad = mainImg.getAttribute("timeoutLoad");
+  myLog("Starting scroll main movie. timeoutLoad: " + timeoutLoad);
+  if (timeoutLoad !== "true") {
+    // either loaded originally or loaded by user. 
+    myLog("Resetting MainMovie timer ... ");
+    mainImg.setAttribute("timeoutLoad", "true");  // Attributes must be strings
+    setTimeout("scrollMainMovie()", displayTime);
+    return;
+  }
+  var op = parseFloat(mainImg.style.opacity);
+  if (increaseMainMovieOpacity && op >= 1.0) {
+    myLog("Beginning fade out. Opacity: " + op); 
+    op = 1.0;
+    increaseMainMovieOpacity = false; 
+  } else if (!increaseMainMovieOpacity && op <= 0.0) {
+    myLog("Changing movie and beginning fade in. Opacity: " + op);
+    op = 0.0;
+    increaseMainMovieOpacity = true;  
+    replaceMainMovie(currentMainMovie, "true");  // true => loaded due to timeout
+    currentMainMovie = (currentMainMovie + 1) % movies.length;
+  }
+  if (increaseMainMovieOpacity) {
+    mainImg.style.opacity = 0.1 + op;  // number 1st - avoid string errs 
+    if (mainImg.style.opacity >= 1.0) {
+      myLog("Done fade in ... ");
+      setTimeout("scrollMainMovie()", displayTime); 
+      return;
+    }
+  } else {
+    mainImg.style.opacity = op - 0.1; 
+  }
+  setTimeout("scrollMainMovie()", 100); // work w or wo quotes
+} // scrollMainMovie
+
+// Replace the Main move poster image and related text info.
+// Uses movies[] global. 
+function replaceMainMovie(currentMainMovie, timeoutLoadStr) {
   var movie = movies[currentMainMovie]; 
   var mainImg = document.getElementById('main-img'); 
+  mainImg.setAttribute("timeoutLoad", timeoutLoadStr);
   mainImg.setAttribute("src", movie.Poster);
   var titleDiv = document.getElementById('main-title-div'); 
   titleDiv.textContent = movie.Title + " " + movie.Year;
   var detailDiv = document.getElementById('main-detail-div'); 
   detailDiv.textContent = movie.Plot;
-  currentMainMovie = (currentMainMovie + 1) % movies.length;
-  setTimeout(scrollMainMovie, 7000);
-} // scrollMainMovie
+} // replaceMainMovie
 
 // insert the scroll movie div at the end of main, and the main-movie section at the top
 function insertMissingDivs() {
@@ -345,6 +398,7 @@ function insertMissingDivs() {
   mainImg.setAttribute("id", "main-img");
   mainImg.setAttribute("alt", "Movie Image");
   mainImg.setAttribute("width", "40%");
+  mainImg.style.opacity = 1.0;
   var mainTitleDiv = document.createElement('p');
   mainImgCard.appendChild(mainTitleDiv);
   mainTitleDiv.setAttribute("id", "main-title-div");
@@ -375,8 +429,12 @@ insertMissingDivs();
 var movies = getFavoriteMovies(); // array of movies with good posters
 var currentMovie = 0; 
 var currentMainMovie = 0;
+var increaseMainMovieOpacity = true;
 scrollMovies();
-scrollMainMovie();
+replaceMainMovie(currentMainMovie, "true");  // true => a timeoutLoad
+currentMainMovie++;  
+// scrollMainMovie(); // this will fade out immediately, 
+setTimeout("scrollMainMovie()", 7000); 
 
 var btn = document.getElementById("remove-button");
 btn.setAttribute("onclick", "clearLocalStorageButtonClickFunction()"); 

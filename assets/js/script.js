@@ -6,6 +6,10 @@ var form = document.querySelector('form');                  // MJS - I'd favor a
 var heroInput = document.getElementById('search-input');
 var previous = document.getElementById('previous');
 previous.style.display = 'block'; // this belongs in the css file.
+var modalcontainer = document.getElementById('modal-container');
+var modal = document.getElementById('modal');
+var modalposition = document.getElementById('modal-position');
+var closemodal = document.getElementById('hide-modal');
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();  // prevents clearing of window, maybe event propogation
@@ -20,9 +24,21 @@ form.addEventListener('submit', function(event) {
     superherosearch(storeIfFound);
   } else {
     // remember, no confirms in this assignment. Must use a modal(??)
-    window.confirm('Please enter hero name.');
+    displaymodal();
   }
 });  // end form (input text area for hero's name) event listener
+
+function displaymodal() {
+  modalcontainer.style = 'background-color: rgba(0, 0, 0, 0.3); position: fixed; top: 0; left: 0; height: 100vh; width: 100vw;';
+  modalposition.style = 'position: absolute; top: 35%; left: 50%; transform: translate(-50%, -50%)';
+  modal.style = 'background-color: #fff; border-radius: 5px; box-shadow: 0 2px 4px rgba (0, 0, 0, 0.2); padding: 30px 50px; width: 450px; max-width: 100%; text-align: center';
+}
+
+closemodal.addEventListener ('click', function (event) {
+  modalcontainer.style = 'display: none';
+  modal.style = 'display: none';
+});
+
 
 // MJS 12.20.23 - set up the URL and load search-search_results web page. 
 function superherosearch(storeIfFound) {  // poor CamelCase but what we agreed upon

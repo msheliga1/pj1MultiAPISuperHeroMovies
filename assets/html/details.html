@@ -1,43 +1,42 @@
 <!DOCTYPE html>
-<!-- Last change MJS 12.29 12:09 shortcut icon pound sign -->
+
 <html lang="en"> 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fetch Demo</title>
+    <title>Search Results</title>
     <link rel="shortcut icon" href="#">
-    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/bulma.css">
   </head>
-  <body class="min-100-vh flex-column">
-    <header class="p-5 text-center text-white bg-primary">
-      <h1>Server-Side APIs MJS 1:03</h1>
-    </header>
-    <main class="flex-row justify-center align-center col-auto p-4 bg-light">
-      <section class="card card-rounded col-7 bg-white">
-        <header class="card-header text-center">
-          <h2 class="text-white">
-            Details Page - Superhero Project 
-          </h2>
-        </header>
-        <div class="text-center pt-4">
-          <button class="btn btn-danger" id="back-btn">
-            Back to Search
-          </button>
+  
+  <body class="is-flex-direction-row is-flex-wrap-wrap "> 
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container"></div>
+          <h1 class="title is-1" id="title">SuperHero Movie Finder</h1>
+          <h1 class="subtitle is-3">Search Results</h1>
+          <button class="button is-danger is-focused is-rounded mx-2 my-2 px-2 py-2" id="back-btn">Back to Search</button>
         </div>
-        <div class="text-center pt-4">
-          <input id="superhero">
-        </input>
-        </div>
-        <table class="card-body table mx-auto my-4">
-          <th>
-            <p class="my-4">Results</p>
-          </th>
-          <tbody id="movie-table" class="mx-auto text-center"></tbody>
-        </table>
-      </section>
-      <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-      <!-- got rid of / before ? in Url, so one less ../ in src -->
-      <script src="../js/details.js"></script>
-    </main>
+      </div>
+    </section>
+    
+    <div class="tile is-ancestor">
+      <div class="tile">
+        <div class="tile is-parent">
+          <table class="tile is-child table mx-auto my-4">
+          
+            <tbody id="movie-table"></tbody>
+        
+          </table>
+        </div> 
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script src="../js/details.js"></script>
+    
   </body>
+
 </html>
+

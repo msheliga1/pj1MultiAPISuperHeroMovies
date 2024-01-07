@@ -1,72 +1,128 @@
 <!DOCTYPE html>
 <!-- Last change MJS 12.29 12:03 -->
 <html lang="en"> 
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href="#">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma.css">
+  <!--Title of page-->
   <title>SuperHero Movie Finder</title>
 </head>
-<body>
-<header>
-<h1>SimpliSuper</h1>
-</header>
-<div>
-<h1>SuperHero Movie Finder</h1>
-<p>Want to find movies featuring your favorite superhero? Use this free tool to get a list of movies starring DC or Marvel hero in seconds. </p>
-<p id="disclaimer">Disclaimer: This tool only searches for movies that features a character's name in the title. Additionally, some heroes will not be available to search.</p>
-<form>
-<input id="search-input" type="text" placeholder="Enter Your Hero">
-<input type="submit" value="Find Movies">
-</form>
-<div id="previous" style="display: none;">
-<h1>Previous Searches</h1>
-<div id="previous-search">
-</div>
-<button id='remove-button' style="margin: 20px;">Clear Searches</button>
-</div>
-</div>
-<div id="modal-container" style="display: none">
-<div id="modal-position">
-  <div id="modal">
-    <h1>No Value Inserted</h1>
-    <p>Please enter hero name.</p>
-    <button id="hide-modal">Close Message</button> 
-  </div>
-</div>
-</div>
-<div id="How-To">
-<h1>What Can You Do with the SuperHero Movie Finder?</h1>
-<p>The SuperHero Movie Finder is a completely free, easy-to-use movie search tool, designed by SimpliSuper, to help you find superhero flicks superfast.</p>
-<div id="discover">
-<h1>Discover Movies Starring Your Favorite DC/Marvel Hero</h1>
-<p>Generate a list of relevant movies with just a click</p>
-</div>
-<div id="ratings">
-<h1>View Movie Ratings</h1>
-<p>See ratings for your list of movies to determine whether if its something the whole family can watch or is it going to be an adults only night.</p>
-</div>
-<div id="critics">
-<h1>See Critic Reception</h1>
-<p>View Critic Scores from Popular Review Sites such as Rotten Tomatoes, Metacritic, and IMDb. </p>
-</div>
-</div>
-<div id="FAQs">
-<h1>FAQs</h1>
-<div id="cost">
-<h1>How Much Does SuperHero Movie Finder Cost?</h1>
-<p>SuperHero Movie Finder is free to all users and no account is required to utilize the tool.</p>
-</div>
-<div id="hero">
-<h1>Will heroes outside of DC and Marvel be added in the future?</h1>
-<p>Although there are no current plans to branch outside of listing DC and Marvel heroes, our team is very interested in pursuing that option in the future.</p>
-</div>
-<div id="language">
-<h1>What Languages Are Supported?</h1>
-<p>At this time, only English is available with the SuperHero Movie Finder.</p>
-</div>
-</div>
-<script src="./assets/js/script.js"></script>
+
+<!--Header of page-->
+<body class="is-flex-direction-row is-flex-wrap-wrap px-5 py-5 my-5 mx-5"> 
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container"></div>
+        <h1 class="title is-1 has-text-white" id="title">SuperHero Movie Finder</h1>
+        <h1 class="subtitle has-text-white is-4">SimpliSuper</h1>
+      </div>
+    </div>
+  </section>
+  
+  <!--Ancestor tile, all parent and children will fall underneath-->
+  <main class="tile is-ancestor px-3 py-3 mx-2 my-2">
+    <div class="tile is-6 has-text-centered">
+      <!--Parent tile-->
+      <div class="tile is-parent">
+        <!--Child tile-->
+        <article class="tile is-child box notification is-danger">
+            <!--Search instructions, search bar, button to submit search-->
+            <p class="title">Welcome to the SuperHero Movie Finder - the quickest way to find all superhero related films. To get started, simply enter the name of your DC or Marvel hero below and click 'Find Movies' to see a list of movies that they appear in.</p>
+            <p class="subtitle">Disclaimer: Some heroes will not be available to search.</p>
+            <div class="content">
+              <form>
+                <input class="input is-rounded mx-1 my-2" id="search-input" type="text" placeholder="Enter Your Hero">
+                <input class="button is-rounded mx-1 my-2" type="submit" value="Find Movies">
+              </form>
+              <!--Previous searches will display here, with a button to clear them as well-->
+              <div class="is-size-7" id="previous">
+                <h1 class="has-text-white">Previous Searches</h1>
+                <div id="previous-search"></div>
+              </div>
+              <button class="button is-rounded mx-1 my-2 has-text-centered" id='remove-button' style="margin: 20px;">Clear Searches</button>
+            </div>
+          </article>
+        </div>
+
+        <div id="modal-container" style="display: none">
+        
+          <div id="modal-position">
+            <div id="modal">
+              <h1>No Value Inserted</h1>
+              <p>Please enter hero name.</p>
+              <button id="hide-modal">Close Message</button> 
+            </div>
+          </div>
+        </div>
+      </div>  
+  
+      <div class="tile has-text-centered">
+        <!--Parent tile-->
+        <div class="tile is-parent">
+          <!--Child tile-->
+          <article class="tile is-child box notification is-link has-text-white">
+          <div id="How-To">
+            <h1 class="px-1 py-1 mx-1 my-1 title">What Can You Do with the SuperHero Movie Finder?</h1>
+            <p class="px-1 py-1 mx-1 my-1 subtitle">The SuperHero Movie Finder is a completely free, easy-to-use movie search tool, designed by SimpliSuper, to help you find superhero flicks superfast.</p>
+          </div>
+        
+          <div id="discover">
+            <h1 class="px-1 py-1 mx-1 my-1 is-size-5">Discover Movies Starring Your Favorite DC/Marvel Hero</h1>
+            <p class="px-1 py-1 mx-1 my-1 is-size-6">Generate a list of relevant movies with just a click</p>
+          </div>
+        
+          <div id="ratings">
+            <h1 class="px-1 py-1 mx-1 my-1 is-size-5">View Movie Ratings</h1>
+            <p class="px-1 py-1 mx-1 my-1 is-size-6">See ratings for your list of movies to determine whether if its something the whole family can watch or is it going to be an adults only night.</p>
+          </div>
+      
+          <div id="critics">
+            <h1 class="px-1 py-1 mx-1 my-1 is-size-5">See Critic Reception</h1>
+            <p class="px-1 py-1 mx-1 my-1 is-size-6">View Critic Scores from Popular Review Sites such as Rotten Tomatoes, Metacritic, and IMDb. </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile has-text-centered">
+        <!--Parent tile-->
+        <div class="tile is-parent">
+          <!--Child tile-->
+          <article class="tile is-child box notification is-success has-text-white">
+          <div id="FAQs">
+            <h1 class="title">FAQs</h1>
+            <div id="cost">
+              <h1 class="px-1 py-1 mx-1 my-1 is-size-5">How Much Does SuperHero Movie Finder Cost?</h1>
+              <p class="px-1 py-1 mx-1 my-1 is-size-6">SuperHero Movie Finder is free to all users and no account is required to utilize the tool.</p>
+            </div>
+
+            <div id="hero">
+              <h1 class="px-1 py-1 mx-1 my-1 is-size-5" >Will heroes outside of DC and Marvel be added in the future?</h1>
+              <p class="px-1 py-1 mx-1 my-1 is-size-6">Although there are no current plans to branch outside of listing DC and Marvel heroes, our team is very interested in pursuing that option in the future.</p>
+            </div>
+
+            <div id="language">
+              <h1 class="px-1 py-1 mx-1 my-1 is-size-5">What Languages Are Supported?</h1>
+              <p class="px-1 py-1 mx-1 my-1 is-size-6">At this time, only English is available with the SuperHero Movie Finder.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        footer?
+      </p>
+    </div>
+  </footer>
+
+  <script src="./assets/js/script.js"></script>
+
 </body>
+
 </html>

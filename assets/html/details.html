@@ -13,7 +13,7 @@
   <body class="is-flex-direction-row is-flex-wrap-wrap "> 
     <header class="hero is-black is-small">
       <div class="hero-body">
-          <h1 class="title is-3" id="title">SuperHero Movie Finder</h1>
+          <h1 class="title is-3 title-strong-weight" id="title">SuperHero Movie Finder</h1>
           <h2 class="subtitle is-5" id="search-results-found">Search Results</h2>
           <button class="button is-danger is-rounded mx-2 my-2 px-2 py-2" id="back-btn">Back to Search</button>
         </div>
@@ -22,11 +22,20 @@
     
     <main class="has-background-black">
         <!-- First tile is table -->
-        <secton class="tile is-ancestor has-text-centered">
-          <div class="tile is-8 mx-3">
+        <secton class="tile is-ancestor px-3 py-7">
+          <div class="tile is-7 mx-5">
             <div class="tile is-parent">
-              <table class="tile is-child box table">
-              
+              <table class="tile is-child box table has-bold-text">
+                <thead> 
+                  <tr>    <!--Table Rows-->
+                     <th>Movie Name</th> 
+                     <th>Release</th> 
+                     <th>Rated</th>
+                     <th></th>
+                     <th>Critic/Rating</th>
+               
+                  </tr> 
+               </thead> 
                 <tbody id="movie-table"></tbody>
             
               </table>
@@ -42,12 +51,12 @@
                   <img id="poster-img"; src=" "; alt=" ">
                 </div>
                 <div id="poster-text-div">
-                  <div id="poster-text">
-                    <p id="title-year"> <p>   
-                    <p id="rated"> </p>
-                    <p id="actors"> </p>
-                    <p id="director"> </p>
-                    <p id="plot"> </p>
+                  <div class="py-5 px-" id="poster-text">
+                    <p class="mx-2 my-2" id="title-year"> <p>   
+                    <p class="mx-2 my-2" id="rated"> </p>
+                    <p class="mx-2 my-2" id="actors"> </p>
+                    <p class="mx-2 my-2" id="director"> </p>
+                    <p class="mx-2 my-2" id="plot"> </p>
                   </div>
                 </div>
               </section>

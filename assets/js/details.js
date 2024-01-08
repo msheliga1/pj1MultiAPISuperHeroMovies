@@ -296,6 +296,7 @@ function addDomRowOfMovieDetails(data) {
 function addDomMovie(data) {
 
   // Now put in the actual image.
+  myLog("Adding Movie Details to DOM ...");
   var poster = document.getElementById('poster-img');
   poster.textContent = "JS Hola";
   poster.setAttribute("alt", "Poster Info js");
@@ -306,12 +307,14 @@ function addDomMovie(data) {
 
   // Text goes below poster in this case
   var textDiv= document.getElementById('poster-text');
-  textDiv.textContent = "";  // wipe old old data
+  // textDiv.textContent = "";  // wipe old old data
   var tdTitle = document.getElementById('title-year');
-  var tdYear = document.createElement('p');
-  textDiv.appendChild(tdYear);
-  var tdRated = document.createElement('p');
-  textDiv.appendChild(tdRated);
+  if (!tdTitle) {
+    myLog("Bad tdTitle");
+  }
+  // var tdYear = document.createElement('p');
+  // textDiv.appendChild(tdYear);
+  var tdRated = document.getElementById('rated');
   var tdDirector = document.createElement('p');
   textDiv.appendChild(tdDirector);
   var tdPoster = document.createElement('td');

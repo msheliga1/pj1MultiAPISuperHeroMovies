@@ -24,6 +24,7 @@ superheroMovieSearch();
 function superheroMovieSearch() {  
     // fetch request gets a list of all the repos for the node.js organization
     console.log("Starting superheroMovieSearch routine ... " + dayjs().format("YYYY-MM-DD"));
+    document.getElementById("back-btn").textContent = "Searching ... ";
     // the movie database TMDB - https://developer.themoviedb.org/reference/search-movie 
     //      --url 'https://api.themoviedb.org/3/search/keyword?query=robin&page=1' \
     //      --url 'https://api.themoviedb.org/3/search/keyword?page=1' 
@@ -55,6 +56,7 @@ function superheroMovieSearch() {
             myLog("No superhero results found ");
             setDomSearchResult("No Movies Found for " + heroName);
             var backBtn = document.getElementById("back-btn");
+            backBtn.textContent = "Back To Search";
             backBtn.addEventListener("click", backToSearch);  // dont allow back until done searching for movie.
             return;
         }
@@ -132,6 +134,7 @@ function superheroMovieSearch() {
           }
         }
         var backBtn = document.getElementById("back-btn");
+        backBtn.textContent = "Back To Search";
         backBtn.addEventListener("click", backToSearch);  // dont allow back until done searching for movie.
     }  // end if done
   }  // end movieTimeHandler
@@ -209,9 +212,7 @@ function backToSearch() {
     if (storeHero) {
         indexUrl += "?store=" + getQueryValue("search");  // pass heroName back if needed for localStorage
     }
-    alert("Back Button Hit .... returning to " + indexUrl);
-    for (var i=0; i<100000; i++) {  // to see log msg before page swap
-    }
+    // alert("Back Button Hit .... returning to " + indexUrl);  // good for debugging. View console b4 page swap
     // localStoreHero(heroName);  // local storage changes from page to page ... must pass heroName back to main page.
     location.href = indexUrl;
     // no code executes after location (ie web page) is changed.
@@ -367,6 +368,7 @@ function getQueryValue(label) {
     myLog("In location " + url);
     var splitUrl = url.split("?");
     var queryString = splitUrl[splitUrl.length - 1];
+    queryString = queryString.replaceAll("%20", " ");  // spaces auto-coerced to %20, change back. (IE compatable?)
     myLog("The query string is " + queryString);
     var splitQS = queryString.split("&");
     var inputText = null;

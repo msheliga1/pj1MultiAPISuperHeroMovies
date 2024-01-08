@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- Copied from Taylers branch 1.7.24 7:55 with some bulma changes. -->
 <html lang="en"> 
   <head>
     <meta charset="UTF-8" />
@@ -10,33 +10,56 @@
     <link rel="stylesheet" href="./assets/css/bulma.css">
   </head>
   
-  <body class="is-flex-direction-row is-flex-wrap-wrap px-5 py-5 my-5 mx-5"> 
-    <header class="hero is-black">
+  <body class="is-flex-direction-row is-flex-wrap-wrap "> 
+    <header class="hero">
       <div class="hero-body">
-          <h1 class="title is-1" id="title">SuperHero Movie Finder</p>
+        <div class="container"></div>
+          <h1 class="title is-1" id="title">SuperHero Movie Finder</h1>
+          <h2 class="subtitle is-3" id="search-results-found">Search Results</h2>
+          <button class="button is-danger is-focused is-rounded mx-2 my-2 px-2 py-2" id="back-btn">Back to Search</button>
         </div>
       </div>
     </header>
-
-    <main>
-      <div class="tile is-ancestor px-3 py-3 mx-2 my-2"> 
-        <div class="tile is-parent has-text-centered">
-          <div class="tile is-2 is-child box">
-            <p class="subtitle is-size-3">Search Results</p>
-            <button class="button is-rounded" id="back-btn">Back to Search</button>
-          </div> 
+    
+    <main class="columns">
+      <!-- First column is table -->
+      <section class="column is-two-thirds">
+        <secton class="tile is-ancestor">
+          <div class="tile">
+            <div class="tile is-parent">
+              <table class="tile is-child table mx-auto my-4">
+              
+                <tbody id="movie-table"></tbody>
             
-          <div class="tile is-child box">
-            <table> 
-              <tbody id="movie-table"></tbody>
-            </table>
+              </table>
+            </div> 
           </div>
-        </div>
-      </div>
-    </main>
+        </section>
+      </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
-    <script src="../js/details.js"></script>
+      <!-- Second column is poster and poster info -->
+      <section class="column is-one-third" id="movie-div">  
+        <div id="poster-div"> 
+          <img id="poster-img"; src=" "; alt=" ">
+        </div>
+        <div id="poster-text-div">
+          <div id="poster-text">
+            <p id="title-year"> <p>   
+            <p id="rated"> </p>
+            <p id="actors"> </p>
+            <p id="director"> </p>
+            <p id="plot"> </p>
+          </div>
+
+        </div>
+
+      </section>
+    </main>
+    <!-- no footer for this file -->
+
+    <body>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="../js/details.js"></script>
     
   </body>
 

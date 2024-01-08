@@ -1,6 +1,6 @@
 # uriProject1 Multiple API Super Hero Movies   
 URI Project I - Multiple APIs, Multiple HTML pages, non-bootstrap CSS framework and local storage - Due 1.9.24
-Michael Sheliga, De'Sean Pair and Tayler Baldwin - Started Tuesday 12.19.23 - Last Edit 12.28.23 MJS
+Michael Sheliga, De'Sean Pair and Tayler Baldwin - Started Tuesday 12.19.23 - Last Edit 1.8.24 MJS
 
 This group repo is for the University of Richmond (URI) coding bootcamp.  
 This is the week 7-8 mini-project due 1.9.24. 

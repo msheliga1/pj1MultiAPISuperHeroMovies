@@ -205,6 +205,7 @@ function getQueryValue(label) {
     myLog("In location " + url);
     var splitUrl = url.split("?");
     var queryString = splitUrl[splitUrl.length - 1];
+    queryString = queryString.replaceAll("%20", " ");  // spaces auto-coerced to %20, change back. (IE compatable?)
     myLog("The query string is " + queryString);
     var splitQS = queryString.split("&");
     var inputText = null;

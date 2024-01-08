@@ -24,6 +24,7 @@ superheroMovieSearch();
 function superheroMovieSearch() {  
     // fetch request gets a list of all the repos for the node.js organization
     console.log("Starting superheroMovieSearch routine ... " + dayjs().format("YYYY-MM-DD"));
+    document.getElementById("back-btn").textContent = "Searching ... ";
     // the movie database TMDB - https://developer.themoviedb.org/reference/search-movie 
     //      --url 'https://api.themoviedb.org/3/search/keyword?query=robin&page=1' \
     //      --url 'https://api.themoviedb.org/3/search/keyword?page=1' 
@@ -53,8 +54,9 @@ function superheroMovieSearch() {
       .then(function (data) {
         if (data.total_results === 0) {
             myLog("No superhero results found ");
-            addNoMoviesFoundToDom("No movies found for superhero " + heroName);
+            setDomSearchResult("No Movies Found for " + heroName);
             var backBtn = document.getElementById("back-btn");
+            backBtn.textContent = "Back To Search";
             backBtn.addEventListener("click", backToSearch);  // dont allow back until done searching for movie.
             return;
         }
@@ -123,11 +125,16 @@ function superheroMovieSearch() {
         storeTF = getQueryValue("store");
         myLog("Done searching for " + heroName + " storing: " + storeTF);
         if (founds <= 0) {
-            addNoMoviesFoundToDom("No detailed movie data found for superhero "  + heroName);       
-        } else if (storeTF === "true") {
+          setDomSearchResult("No Detailed Movie Data Found for "  + heroName);       
+        } else {
+          var movieStr = (founds === 1) ? " Movie" : " Movies";
+          setDomSearchResult("Found " + founds + movieStr + " for " + heroName);
+          if (storeTF === "true") {
             storeHero = true;  // used by back btn
+          }
         }
         var backBtn = document.getElementById("back-btn");
+        backBtn.textContent = "Back To Search";
         backBtn.addEventListener("click", backToSearch);  // dont allow back until done searching for movie.
     }  // end if done
   }  // end movieTimeHandler
@@ -154,7 +161,7 @@ function superheroMovieSearch() {
         // Make sure release dates are within 1 year of eachother ... else return 
         myLog("MovieDetail Title " + data.Title + " Year " + data.Year + " Rated " + data.Rated);  // caps count!
         if (movieDetailsFound(data, simpleReleaseDayjs)) {
-          addDomRowOfMovieDetails(data);
+          addDomRowOfMovieDetails(data, founds);  // 0 based
           founds++;
           movies.push(data);
           foundStr += movieNameStr + "\n"; 
@@ -205,9 +212,7 @@ function backToSearch() {
     if (storeHero) {
         indexUrl += "?store=" + getQueryValue("search");  // pass heroName back if needed for localStorage
     }
-    alert("Back Button Hit .... returning to " + indexUrl);
-    for (var i=0; i<100000; i++) {  // to see log msg before page swap
-    }
+    // alert("Back Button Hit .... returning to " + indexUrl);  // good for debugging. View console b4 page swap
     // localStoreHero(heroName);  // local storage changes from page to page ... must pass heroName back to main page.
     location.href = indexUrl;
     // no code executes after location (ie web page) is changed.
@@ -235,7 +240,7 @@ function addMovieSummaryToDom(results) {
 }  // end addMovieSummaryToDom
 
 // Detailed movie data has been found and confirmed valid - add it to the DOM
-function addDomRowOfMovieDetails(data) {
+function addDomRowOfMovieDetails(data, movieIndex) {
     var tableBody = document.getElementById('movie-table'); 
     // Generate a table row
     var ratings = data.Ratings;
@@ -253,6 +258,8 @@ function addDomRowOfMovieDetails(data) {
     tableRow.appendChild(tdPoster);
     var poster = document.createElement('img');
     tdPoster.appendChild(poster);
+    poster.setAttribute("onclick", "rowPosterClicked(event)");
+    poster.setAttribute("movieIndex", movieIndex);
     tdTitle.textContent = data.Title;
     tdYear.textContent = data.Year;
     tdRated.textContent = data.Rated;
@@ -292,20 +299,31 @@ function addDomRowOfMovieDetails(data) {
     } // end for
 }  // end addDomRowOfMovieDetails
 
-// Add a movie poster and text details it to the DOM. 
-function addDomMovie(data) {
+// User clicked on a poster in a row, show poster and details.
+function rowPosterClicked(event) {
+  myLog("Staring rowPosterClicked");
+  var img = event.target;
+  if (!img) {
+    myLog("Bad img ... returning without switching posters");
+    return;
+  }
+  var movieIndex = parseInt(img.getAttribute("movieIndex"));
+  myLog(" movie index: " + movieIndex + " tagName " + img.tagName);
+  addDomMovie(movies[movieIndex]);
+} // end rowPosterClicked
 
+// Add a large movie poster and text details it to the DOM. 
+function addDomMovie(data) {
   // Now put in the actual image.
   myLog("Adding Movie Details to DOM ...");
   var poster = document.getElementById('poster-img');
-  poster.textContent = "JS Hola";
-  poster.setAttribute("alt", "Poster Info js");
+  poster.setAttribute("alt", "Movie Poster for " + data.Title);
   if (data.Poster !== "N/A") {
     poster.setAttribute("src", data.Poster);
-    // poster.setAttribute("width", "25%");
+    // poster.setAttribute("width", "100%");
   }
 
-  // Text goes below poster in this case
+  // Text goes below poster in this case.   // <div id="poster-text">
   var textDiv= document.getElementById('poster-text');
   // textDiv.textContent = "";  // wipe old old data
   var tdTitle = document.getElementById('title-year');
@@ -315,28 +333,28 @@ function addDomMovie(data) {
   // var tdYear = document.createElement('p');
   // textDiv.appendChild(tdYear);
   var tdRated = document.getElementById('rated');
-  var tdDirector = document.createElement('p');
-  textDiv.appendChild(tdDirector);
-  var tdPoster = document.createElement('td');
-  textDiv.appendChild(tdPoster);
+
+  var tdActors = document.getElementById('actors');
+  var tdDirector = document.getElementById('director');
+  var tdPlot = document.getElementById('plot');
+  // var tdPoster = document.createElement('td');
+  // textDiv.appendChild(tdPoster);
   // data.poster is jpeg
   tdTitle.textContent = data.Title + " " + data.Year
   // tdYear.textContent = data.Year;
-  tdRated.textContent = data.Rated;
+  tdRated.textContent = "Rating: " + data.Rated;
+  tdActors.textContent = "Starring: " + data.Actors;
   tdDirector.textContent = "Director: " + data.Director;
-
+  if (data.Plot !== "N/A") {
+    tdPlot.textContent = data.Plot;
+  }
 }  // end addDomMovie
 
 // No Movie data at all exists ... add msg to DOM
-function addNoMoviesFoundToDom(msg) {
-    var tableBody = document.getElementById('movie-table');
-    // Generate a table row
-    var tableRow = document.createElement('tr');
-    tableBody.appendChild(tableRow);
-    var tdEl= document.createElement('td');
-    tableRow.appendChild(tdEl);
-    tdEl.textContent = msg;
-}  // end addNoMoviesFoundToDom
+function setDomSearchResult(msg) {
+    var msgEl = document.getElementById('search-results-found');
+    msgEl.textContent = msg;
+}  // end setDomSearchResult
 
   
 // ----------------------- Accesssory methods -----------------------  
@@ -351,6 +369,7 @@ function getQueryValue(label) {
     myLog("In location " + url);
     var splitUrl = url.split("?");
     var queryString = splitUrl[splitUrl.length - 1];
+    queryString = queryString.replaceAll("%20", " ");  // spaces auto-coerced to %20, change back. (IE compatable?)
     myLog("The query string is " + queryString);
     var splitQS = queryString.split("&");
     var inputText = null;
@@ -390,7 +409,7 @@ function getApi() {
         tableBody.appendChild(createTableRow);
       }
     });
-}
+} // end function getApi
 
 // Reference Routine - Various tries to comicVine API and TMDB API 
 // comicVine has CORS err, fixable with heroku, but heroku requires a button push to activate. ("once or twice a day")

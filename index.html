@@ -12,10 +12,11 @@
   <title>SuperHero Movie Finder</title>
 </head>
 
-
+<!-- DP 1.7.24 - Made Changes to Index.HTML doc by restructuring content to be within semantic tags (main, section, etc.) and reworked modal to be built with bulma-->
 <body class="is-flex-direction-row is-flex-wrap-wrap px-5 py-5 my-5 mx-5"> 
+
 <!--Header of page-->
-  <header class="hero">
+  <header id="posterScrollDiv">
   <div class="hero-body">
   <div class="container"></div>
     <h1 class="title is-1 has-text-white" id="title">SuperHero Movie Finder</h1>
@@ -25,7 +26,7 @@
   
   <!-- SuperHero Movie Finder -->
   <main class="tile is-ancestor px-3 py-3 mx-2 my-2">
-    <div class="tile has-text-centered">
+    <div class="tile is-4 has-text-centered">
       <!--Parent tile-->
       <div class="tile is-parent">
         <!--Child tile-->
@@ -46,6 +47,29 @@
               <button class="button is-rounded mx-1 my-2 has-text-centered" id='remove-button' style="margin: 20px;">Clear Searches</button>
             </div>
           </article>
+        </div>
+
+        <!-- PlaceHolder for Main Image To The Right of Search Form (Middle)-->
+        <div class="tile has-text-centered">
+           <!--Parent tile-->
+        <div id="main-img-div" class="tile is-parent">
+          <!--Child tile-->
+          <article class="tile is-child box notification is-link has-text-white">
+            <div id="main-img"></div>
+          </article>
+        </div>
+        </div>
+
+        <!-- PlaceHolder for Details about Poster -->
+        <div class="tile has-text-centered">
+           <!--Parent tile-->
+        <div class="tile is-parent">
+           <!--Child tile-->
+        <article class="tile is-child box notification is-success has-text-white">
+        <div id="main-title-div"></div>
+        <div id="main-detail-div"></div>
+        </article>
+        </div>
         </div>
   </main>
 

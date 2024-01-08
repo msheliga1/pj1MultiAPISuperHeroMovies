@@ -333,6 +333,7 @@ function addDomMovie(data) {
   // var tdYear = document.createElement('p');
   // textDiv.appendChild(tdYear);
   var tdRated = document.getElementById('rated');
+
   var tdActors = document.getElementById('actors');
   var tdDirector = document.getElementById('director');
   var tdPlot = document.getElementById('plot');

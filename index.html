@@ -13,36 +13,35 @@
 </head>
 
 <!-- DP 1.7.24 - Made Changes to Index.HTML doc by restructuring content to be within semantic tags (main, section, etc.) and reworked modal to be built with bulma-->
-<body class="is-flex-direction-row is-flex-wrap-wrap"> 
+<body class="is-flex-direction-row is-flex-wrap-wrap has-background-black"> 
   
 <!--Header of page-->
-  <header class="has-background-black has-text-centered" id="posterScrollDiv">
-      <div class="container"></div>
-        <h1 id="title">SuperHero Movie Finder</h1>
-      </div>
+  <header class="has-text-centered">
+    <h1 class="is-size-1 has-text-white" id="title">SuperHero Movie Finder</h1>
+      <div class="is-justify-content-space-evenly mx-2 my-2" id="posterScrollDiv"></div> 
   </header>
   
   <!-- SuperHero Movie Finder -->
-  <main class="tile is-ancestor px-4 py-4 mx-4 my-4">
+  <main class="tile is-ancestor px-4 py-4 mx-4 my-4 ">
     <div class="tile is-4 has-text-centered">
       <!--Parent tile-->
       <div class="tile is-parent">
         <!--Child tile-->
-        <article class="tile is-child box has-background-black has-text-white">
+        <article class="tile is-child box has-background-dark has-text-white">
             <!--Search instructions, search bar, button to submit search-->
             <p class="is-size-4 has-text-white has-background-black">Want to find movies featuring your favorite superhero? Use this free tool to get a list of movies starring your favorite heroes in seconds.</p>
             <p class="is-size-6 has-text-white has-background-black" id="disclaimer">Disclaimer: Some heroes will not be available to search.</p>
             <div class="content">
               <form>
                 <input class="input is-rounded mx-1 my-2" id="search-input" type="text" placeholder="Enter Your Hero">
-                <input class="button is-rounded mx-1 my-2 is-danger" type="submit" value="Find Movies">
+                <input class="button is-rounded mx-1 my-2 is-black" type="submit" value="Find Movies">
               </form>
               <!--Previous searches will display here, with a button to clear them as well-->
               <div class="is-size-7" id="previous">
                 <h1 class="has-text-white">Previous Searches</h1>
                 <div class="has-text-white" id="previous-search"></div>
               </div>
-              <button class="button is-rounded mx-1 my-2 has-text-centered is-danger" id='remove-button' style="margin: 20px;">Clear Searches</button>
+              <button class="button is-rounded mx-1 my-2 has-text-centered is-black" id='remove-button' style="margin: 20px;">Clear Searches</button>
             </div>
           </article>
       </div>
@@ -52,7 +51,7 @@
            <!--Parent tile-->
       <div class="tile is-parent" id="main-img-div">
           <!--Child tile-->
-        <article class="tile is-child box has-background-black has-text-white">
+        <article class="tile is-child box has-background-dark has-text-white">
           <div id="main-img"></div>
         </article>
       </div>
@@ -63,8 +62,8 @@
            <!--Parent tile-->
       <div class="tile is-parent">
            <!--Child tile-->
-        <article class="tile is-child box has-background-black has-text-white">
-          <div class="id="main-title-div"></div>
+        <article class="tile is-child box has-background-dark has-text-white">
+          <div id="main-title-div"></div>
           <div id="main-detail-div"></div>
         </article>
       </div>
@@ -89,41 +88,41 @@
   <!--- Application Features -->
   <section class="tile is-ancestor px-3 py-3 mx-2 my-2">
      <!--Parent tile-->
-     <div class="tile has-text-centered is-parent">
+     <div class="tile has-text-centered is-parent is-6">
       <!--Child tile-->
-      <article class="tile is-child box has-background-black has-text-white">
-      <div id="How-To">
-        <h1 class="px-1 py-1 mx-1 my-1 title has-text-success">What Can You Do with the SuperHero Movie Finder?</h1>
-        <p class="px-1 py-1 mx-1 my-1 is-size-4 has-text-white">The SuperHero Movie Finder is a completely free, easy-to-use movie search tool, designed by De'Sean, Michael, and Tayler, to help you find superhero flicks superfast.</p>
-      </div>
+        <article class="tile is-child box has-background-dark has-text-white">
+        <div id="How-To">
+          <h1 class="px-1 py-1 mx-1 my-1 title has-text-success-dark">What Can You Do with the SuperHero Movie Finder?</h1>
+          <p class="px-1 py-1 mx-1 my-1 is-size-4 has-text-white">The SuperHero Movie Finder is a completely free, easy-to-use movie search tool, designed by De'Sean, Michael, and Tayler, to help you find superhero flicks superfast.</p>
+        </div>
     
-      <div id="discover">
-        <h1 class="px-1 py-1 mx-1 my-1 is-size-5 has-text-info">Discover Movies Starring Your Favorite SuperHero</h1>
-        <p class="px-1 py-1 mx-1 my-1 is-size-6">Generate a list of relevant movies with just a click</p>
-      </div>
+        <div id="discover">
+          <h1 class="px-1 py-1 mx-1 my-1 is-size-5 has-text-info">Discover Movies Starring Your Favorite SuperHero</h1>
+          <p class="px-1 py-1 mx-1 my-1 is-size-6">Generate a list of relevant movies with just a click</p>
+        </div>
     
-      <div id="ratings">
-        <h1 class="px-1 py-1 mx-1 my-1 is-size-5 has-text-info">View Movie Ratings</h1>
-        <p class="px-1 py-1 mx-1 my-1 is-size-6">See ratings for your list of movies to determine whether if its something the whole family can watch or is it going to be an adults only night.</p>
-      </div>
+        <div id="ratings">
+          <h1 class="px-1 py-1 mx-1 my-1 is-size-5 has-text-info">View Movie Ratings</h1>
+          <p class="px-1 py-1 mx-1 my-1 is-size-6">See ratings for your list of movies to determine whether if its something the whole family can watch or is it going to be an adults only night.</p>
+        </div>
   
-      <div id="critics">
-        <h1 class="px-1 py-1 mx-1 my-1 is-size-5 has-text-info">See Critic Reception</h1>
-        <p class="px-1 py-1 mx-1 my-1 is-size-6">View Critic Scores from Popular Review Sites such as Rotten Tomatoes, Metacritic, and IMDb. </p>
+        <div id="critics">
+          <h1 class="px-1 py-1 mx-1 my-1 is-size-5 has-text-info">See Critic Reception</h1>
+          <p class="px-1 py-1 mx-1 my-1 is-size-6">View Critic Scores from Popular Review Sites such as Rotten Tomatoes, Metacritic, and IMDb. </p>
+        </div>
       </div>
-    </div>
   </div>
-  </section>
+  
 
   <!-- Frequently Asked Questions -->
-  <section class="tile is-ancestor px-3 py-3 mx-2 my-2">
+  
     <div class="tile has-text-centered">
       <!--Parent tile-->
       <div class="tile is-parent">
         <!--Child tile-->
-        <article class="tile is-child box has-background-black has-text-white">
+        <article class="tile is-child box has-background-dark has-text-white">
         <div id="FAQs">
-          <h1 class="title has-text-success">FAQs</h1>
+          <h1 class="title has-text-success-dark">FAQs</h1>
           <div id="cost">
             <h1 class="px-1 py-1 mx-1 my-1 is-size-5 has-text-info">How Much Does SuperHero Movie Finder Cost?</h1>
             <p class="px-1 py-1 mx-1 my-1 is-size-6">SuperHero Movie Finder is free to all users and no account is required to utilize the tool.</p>

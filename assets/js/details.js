@@ -1,4 +1,5 @@
 // MJS 12.25.23 - URI coding bootcamp class - Group Project 1 
+// Copied from Taylers branch 1.5.24 7:55 although very likely no chagnes.
 // Mike Sheliga, Tayler Baldwin, De'Sean Pair
 // Search for movies in tmdb API using superhero key in query string. 
 // Use results to search for more details in omdb API. Display to DOM. 
@@ -7,6 +8,7 @@ myLog("First line in details.js");
 const MaxMoviesToDisplay = 8; 
 // Following "global" variables better inside of setInterval, but ok for this assignment.
 // Javascript has "run time completion", so there is no need to lock variables.
+var movies = [];
 var starts = 0;    // movies weve begun to try to find
 var founds = 0;    // movies weve found data for
 var foundStr = "Movies Found: ";
@@ -152,9 +154,13 @@ function superheroMovieSearch() {
         // Make sure release dates are within 1 year of eachother ... else return 
         myLog("MovieDetail Title " + data.Title + " Year " + data.Year + " Rated " + data.Rated);  // caps count!
         if (movieDetailsFound(data, simpleReleaseDayjs)) {
-          addMovieDetailsToDom(data);
+          addDomRowOfMovieDetails(data);
           founds++;
-          foundStr += movieNameStr + "\n"
+          movies.push(data);
+          foundStr += movieNameStr + "\n"; 
+          if (founds === 1) {
+            addDomMovie(data);
+          }
         } else {
           missings++;  // finished but without proper data - 404, response "False" or bad release date
           missingStr += movieNameStr + "\n"
@@ -229,7 +235,7 @@ function addMovieSummaryToDom(results) {
 }  // end addMovieSummaryToDom
 
 // Detailed movie data has been found and confirmed valid - add it to the DOM
-function addMovieDetailsToDom(data) {
+function addDomRowOfMovieDetails(data) {
     var tableBody = document.getElementById('movie-table'); 
     // Generate a table row
     var ratings = data.Ratings;
@@ -242,7 +248,7 @@ function addMovieDetailsToDom(data) {
     var tdRated = document.createElement('td');
     tableRow.appendChild(tdRated);
     var tdDirector = document.createElement('td');
-    tableRow.appendChild(tdDirector);
+    // tableRow.appendChild(tdDirector);  // cut down on size
     var tdPoster = document.createElement('td');
     tableRow.appendChild(tdPoster);
     var poster = document.createElement('img');
@@ -254,7 +260,7 @@ function addMovieDetailsToDom(data) {
     poster.setAttribute("alt", "-");
     if (poster.Data !== "N/A") {
       poster.setAttribute("src", data.Poster);
-      poster.setAttribute("width", "35%");
+      poster.setAttribute("width", "25%");
     }
     // data.poster is jpeg
     // create multiple columns (if data exists) for ratings data 
@@ -272,7 +278,7 @@ function addMovieDetailsToDom(data) {
         var tdRated = document.createElement('td');
         tableRow.appendChild(tdRated);
         var tdDirector = document.createElement('td');
-        tableRow.appendChild(tdDirector);
+        // tableRow.appendChild(tdDirector);
         var tdPoster = document.createElement('td');
         tableRow.appendChild(tdPoster);        
       }
@@ -284,7 +290,42 @@ function addMovieDetailsToDom(data) {
       tdSource.textContent = ratings[i].Value;
       myLog("Ratings for ... " + ratings[i].Source);
     } // end for
-}  // end addMovieDetailsToDom
+}  // end addDomRowOfMovieDetails
+
+// Add a movie poster and text details it to the DOM. 
+function addDomMovie(data) {
+
+  // Now put in the actual image.
+  myLog("Adding Movie Details to DOM ...");
+  var poster = document.getElementById('poster-img');
+  poster.textContent = "JS Hola";
+  poster.setAttribute("alt", "Poster Info js");
+  if (data.Poster !== "N/A") {
+    poster.setAttribute("src", data.Poster);
+    // poster.setAttribute("width", "25%");
+  }
+
+  // Text goes below poster in this case
+  var textDiv= document.getElementById('poster-text');
+  // textDiv.textContent = "";  // wipe old old data
+  var tdTitle = document.getElementById('title-year');
+  if (!tdTitle) {
+    myLog("Bad tdTitle");
+  }
+  // var tdYear = document.createElement('p');
+  // textDiv.appendChild(tdYear);
+  var tdRated = document.getElementById('rated');
+  var tdDirector = document.createElement('p');
+  textDiv.appendChild(tdDirector);
+  var tdPoster = document.createElement('td');
+  textDiv.appendChild(tdPoster);
+  // data.poster is jpeg
+  tdTitle.textContent = data.Title + " " + data.Year
+  // tdYear.textContent = data.Year;
+  tdRated.textContent = data.Rated;
+  tdDirector.textContent = "Director: " + data.Director;
+
+}  // end addDomMovie
 
 // No Movie data at all exists ... add msg to DOM
 function addNoMoviesFoundToDom(msg) {

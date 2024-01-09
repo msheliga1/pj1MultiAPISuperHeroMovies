@@ -302,7 +302,7 @@ function footImageClick(ev) {
 
 // function will change the movies in the posterScrollDiv
 function scrollMovies() {
-  const moviesAtOnce = 4;
+  const moviesAtOnce = 5;
   var posterDiv = document.getElementById('posterScrollDiv');
   posterDiv.setAttribute("display", "flex");  // does not work. Use style.display instead
   posterDiv.style.display = "flex";

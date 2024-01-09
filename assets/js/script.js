@@ -302,7 +302,7 @@ function footImageClick(ev) {
 
 // function will change the movies in the posterScrollDiv
 function scrollMovies() {
-  const moviesAtOnce = 4;
+  const moviesAtOnce = 5;
   var posterDiv = document.getElementById('posterScrollDiv');
   posterDiv.setAttribute("display", "flex");  // does not work. Use style.display instead
   posterDiv.style.display = "flex";
@@ -370,8 +370,14 @@ function replaceMainMovie(currentMainMovie, timeoutLoadStr) {
   mainImg.setAttribute("src", movie.Poster);
   var titleDiv = document.getElementById('main-title-div'); 
   titleDiv.textContent = movie.Title + " " + movie.Year;
-  var detailDiv = document.getElementById('main-detail-div'); 
+  var detailDiv = document.getElementById('main-plot'); 
   detailDiv.textContent = movie.Plot;
+  var detailDiv = document.getElementById('main-actors'); 
+  detailDiv.textContent = movie.Actors;
+  var detailDiv = document.getElementById('main-directors'); 
+  detailDiv.textContent = movie.Director;
+  var detailDiv = document.getElementById('main-rating'); 
+  detailDiv.textContent = movie.Rated;
 } // replaceMainMovie
 
 // insert the scroll movie div at the end of main, and the main-movie section at the top
@@ -410,20 +416,18 @@ function insertMissingDivs() {
   var mainImgDiv = document.createElement('div');
   mainImgCard.appendChild(mainImgDiv);
   mainImgDiv.setAttribute("id", "main-img-div");
-  var mainImg = document.createElement('img');
-  mainImgDiv.appendChild(mainImg);
-  mainImg.setAttribute("id", "main-img");
-  mainImg.setAttribute("alt", "Movie Image");
-  mainImg.setAttribute("width", "40%");
-  mainImg.style.opacity = 1.0;
-  var mainTitleDiv = document.createElement('p');
-  mainImgCard.appendChild(mainTitleDiv);
-  mainTitleDiv.setAttribute("id", "main-title-div");
-  mainTitleDiv.textContent = "Movie Title Year";
-  var mainDetailDiv = document.createElement('p');
-  mainImgCard.appendChild(mainDetailDiv);
-  mainDetailDiv.setAttribute("id", "main-detail-div");
-  mainDetailDiv.textContent = "Movie Details";
+  //var mainImg = document.createElement('img');
+  //mainImgDiv.appendChild(mainImg); 
+  //var mainImg = document.getElementById('main-img');
+  var mainTitleDiv = document.getElementById('main-title-div');
+  //mainImgCard.appendChild(mainTitleDiv);
+  //mainTitleDiv.setAttribute("id", "main-title-div");
+  //mainTitleDiv.textContent = "Movie Title Year";
+  var mainDetailDiv = document.getElementById('main-detail-div');
+  //mainImgCard.appendChild(mainDetailDiv);
+  //mainDetailDiv.setAttribute("id", "main-detail-div");
+  //mainDetailDiv.textContent = "Movie Details";
+
 
   // firstChild will return text - which includes line-break in this case! - Use firstElementChild
   var firstKid = mainDiv.firstElementChild; // currently p welcome-msg
@@ -442,7 +446,7 @@ function insertMissingDivs() {
   mainDiv.insertBefore(topSection, mainDiv.firstElementChild);
 } // end insertMissingDivs
 
-insertMissingDivs(); 
+//insertMissingDivs(); 
 var movies = getFavoriteMovies(); // array of movies with good posters
 var currentMovie = 0; 
 var currentMainMovie = 0;

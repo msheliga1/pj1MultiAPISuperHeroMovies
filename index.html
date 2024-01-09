@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Last change TBB 1/7/24 -->
+<!-- Last change DP 1/8/24 -->
 <html lang="en"> 
 
 <head>
@@ -23,7 +23,9 @@
   
   <!-- SuperHero Movie Finder -->
   <main class="tile is-ancestor px-4 py-4 mx-4 my-4 ">
-    <div class="tile is-4 has-text-centered">
+
+    <!-- Placeholder for Search and Local Storage (left)-->
+    <section class="tile is-4 has-text-centered">
       <!--Parent tile-->
       <div class="tile is-parent">
         <!--Child tile-->
@@ -45,45 +47,54 @@
             </div>
           </article>
       </div>
-    </div>
-        <!-- PlaceHolder for Main Image To The Right of Search Form (Middle)-->
-    <div class="tile is-5 has-text-centered">
-           <!--Parent tile-->
-      <div class="tile is-parent" id="main-img-div">
-          <!--Child tile-->
-        <article class="tile is-child box has-background-dark has-text-white">
-          <div id="main-img"></div>
-        </article>
-      </div>
-    </div>
+    </section>
+ 
 
-        <!-- PlaceHolder for Details about Poster -->
-    <div class="tile is-3 has-text-centered">
-           <!--Parent tile-->
-      <div class="tile is-parent">
-           <!--Child tile-->
+    <!-- PlaceHolder for Main Image To The Right of Search Form (Middle)-->
+    <section class="tile is-5 has-text-centered">
+          <!--Parent tile-->
+          <div class="tile is-parent" id="main-img-div">
+            <!--Child tile-->
+          <article class="tile is-child box has-background-dark has-text-white">
+            <img id="main-img" alt="Movie Image">
+            <p id="main-title-div"></p>
+          </article>
+        </div>
+    </section>
+    
+  
+    <!-- PlaceHolder for Details about Poster (right)-->
+    <section class="tile is-3 has-text-centered">
+       <!--Parent tile-->
+       <div class="tile is-parent">
+        <!--Child tile-->
         <article class="tile is-child box has-background-dark has-text-white">
-          <div id="main-title-div"></div>
-          <div id="main-detail-div"></div>
+          <div>
+            <p id="main-plot"></p>
+            <p id="main-actors"></p>
+            <p id="main-directors"></p>
+            <p id="main-rating"></p>
+          </div>
         </article>
       </div>
-    </div>
+    </section>
   
   </main>
 
   <!-- Modal -->
-  <div id="modal-js-example" class="modal">
+  <section id="modal-js-example" class="modal">
     <div class="modal-background"></div>
-    <div class="modal-content">
-      <div class="card has-text-centered">
-        <div class="card-content">
-          <h1 class="title">No Value Inserted</h1>
-          <p class="subtitle mx-2 my-2">Please Enter Hero Name.</p>
-          <button class="button is-rounded mx-1 my-1 has-text-centered is-danger" id="close-modal">Close Message</button>
+      <div class="modal-content">
+        <div class="card has-text-centered">
+           <div class="card-content">
+              <h1 class="title">No Value Inserted</h1>
+              <p class="subtitle mx-2 my-2">Please Enter Hero Name.</p>
+              <button class="button is-rounded mx-1 my-1 has-text-centered is-danger" id="close-modal">Close Message</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
+  </section>
+  
 
   <!--- Application Features -->
   <section class="tile is-ancestor px-3 py-3 mx-2 my-2">

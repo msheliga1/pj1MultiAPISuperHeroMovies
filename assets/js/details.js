@@ -235,7 +235,7 @@ function addMovieSummaryToDom(results) {
           tableData.textContent = "" + i + ". " + title;  
           // Aappend the tabledata to the tablerow, and append tableRow to the tablebody
           tableRow.appendChild(tableData);
-          tableBody.appendChild(tableRow);
+          tableBody.appendChild(tableRow); 
         }  // end for
 }  // end addMovieSummaryToDom
 

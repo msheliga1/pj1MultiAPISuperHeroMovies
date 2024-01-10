@@ -239,7 +239,7 @@ function addMovieSummaryToDom(results) {
         }  // end for
 }  // end addMovieSummaryToDom
 
-// Detailed movie data has been found and confirmed valid - add it to the DOM
+// Detailed movie data has been found and confirmed valid - add it to the DOM 
 function addDomRowOfMovieDetails(data, movieIndex) {
     var tableBody = document.getElementById('movie-table'); 
     // Generate a table row

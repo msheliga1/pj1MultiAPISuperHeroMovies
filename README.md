@@ -8,7 +8,8 @@ This is the week 7-8 mini-project due 1.9.24.
 ## Link to Repo and Deployed Webpage
 Link to GitHub Repo: https://github.com/msheliga1/pj1MultiAPISuperHeroMovies 
 Link to deployed github.io site. https://msheliga1.github.io/pj1MultiAPISuperHeroMovies/   
-Link to screenshot of deployed github.io site. ![Mini Project I APIs GitHub Deployed Start Screenshot](./assets/images/WorkingScreenshot.PNG)   
+Link to screenshot of deployed github.io site. ![Mini Project I APIs GitHub Deployed Start Screenshot](./assets/images/WorkingScreenshot.png
+)   
 Link to screenshot of 2. ![Mini Project I APIs GitHub Results Screenshot](./assets/images/ResultsScreenshot.PNG)   
 
 ## Project Goals  

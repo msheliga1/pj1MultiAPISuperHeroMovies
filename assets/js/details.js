@@ -128,7 +128,7 @@ function superheroMovieSearch() {
           setDomSearchResult("No Detailed Movie Data Found for "  + heroName);       
         } else {
           var movieStr = (founds === 1) ? " Movie" : " Movies";
-          setDomSearchResult("Found " + founds + movieStr + " for " + heroName);
+          setDomSearchResult("Found " + founds + movieStr + " for " + heroName + ".   Click table icons to see detailed info.");
           if (storeTF === "true") {
             storeHero = true;  // used by back btn
           }
@@ -246,6 +246,7 @@ function addDomRowOfMovieDetails(data, movieIndex) {
     var ratings = data.Ratings;
     var tableRow = document.createElement('tr');
     tableBody.appendChild(tableRow);
+    tableRow.style.borderTop = "3px solid #000";  // cant be done in Bulma. 2px doesnt display on top row!
     var tdTitle = document.createElement('td');
     tableRow.appendChild(tdTitle);
     var tdYear = document.createElement('td');
@@ -294,7 +295,7 @@ function addDomRowOfMovieDetails(data, movieIndex) {
       tdSource.textContent = ratings[i].Source;
       var tdSource = document.createElement('td');
       tableRow.appendChild(tdSource);
-      tdSource.textContent = ratings[i].Value;
+      tdSource.textContent = ratings[i].Value;  // Could use a slash n here.
       myLog("Ratings for ... " + ratings[i].Source);
     } // end for
 }  // end addDomRowOfMovieDetails
